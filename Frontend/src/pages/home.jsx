@@ -1,28 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import BGSolarPanel from "../assets/img/solar-panel.jpg";
+import Button from "../components/button/Button";
+import DataRecording from "../layout/DataRecording";
+import DataRealtime from "../layout/DataRealtime";
+import { getMax } from "../data/api";
 
 const HomePage = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
   const contentRef = useRef(null);
 
   useEffect(() => {
     document.title = "Solar Panel Monitoring";
   });
-
-  // current time every second
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (time) => {
-    const hours = time.getHours();
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
-    return `${hours}:${minutes}:${seconds}`;
-  };
 
   const handleScroll = () => {
     contentRef.current.scrollIntoView({ behavior: "smooth" });
@@ -40,28 +28,28 @@ const HomePage = () => {
             <h1 className="text-white text-5xl font-semibold">
               Solar Panel Monitoring
             </h1>
-            <p className="text-white my-2 w-[60%]">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
-              ratione provident pariatur ab optio facilis.
+            <p className="text-white my-2 w-[70%]">
+              With the Solar Panel Monitoring will make it easier to view data
+              and also directly
             </p>
-            <button 
-            onClick={handleScroll}
-            className="text-white mt-2 font-semibold px-7 py-2 rounded-3xl border-[3px] border-white hover:text-black hover:bg-white duration-500 ease-in-out">
+            <Button
+              oc={handleScroll}
+              customStyles={
+                "text-white bg-transparent border-white border-[2px] hover:bg-white hover:text-black"
+              }
+            >
               See Now
-            </button>
+            </Button>
           </div>
-          {/* <img src={vector} alt="vector" className="w-[700px]" /> */}
         </div>
       </div>
 
-      {/* content */}
-      <div className="bg-slate-200" ref={contentRef}>
-        <div className="h-[100vh] mx-[10%] flex justify-center items-center">
-          <div className="text-center">
-            <h1 className="text-3xl font-semibold">Current Data</h1>
-            <p>{`${formatTime(currentTime)}`}</p>
-          </div>
-        </div>
+      <div className="bg-slate-100" ref={contentRef}>
+        <DataRealtime />
+      </div>
+
+      <div className="bg-slate-300">
+        <DataRecording />
       </div>
     </div>
   );

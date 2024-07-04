@@ -1,9 +1,12 @@
-const Button = ({ children, oc, customStyles }) => {
+const Button = (props) => {
+    const { children, oc, customStyles } = props;
     return (
         <button
-        className={`${customStyles} bg-sky-500 text-white px-4 py-2 rounded-md hover:bg-sky-600 duration-500 ease-in-out`}
+        className={`${customStyles} px-8 py-3 font-semibold rounded-3xl duration-500 ease-in-out`}
         onClick={oc}>
             {children}
         </button>
     )
 }
+
+export default Button
