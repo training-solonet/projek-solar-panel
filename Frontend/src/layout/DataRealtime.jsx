@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import StatisticCard from "../components/card/StatisticCard";
-import { getData } from "../data/api";
 
 const DataRealtime = () => {
   return (
@@ -13,7 +12,7 @@ const DataRealtime = () => {
       <div class="my-8">
         <div class="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center gap-x-8">
           <StatisticCard
-            customCard={"w-[850px] h-[280px] max-w-lg px-32"}
+            customCard={"w-[850px] h-[280px]"}
             title="Current Data"
             dataAmpere="0"
             dataVolt="0"

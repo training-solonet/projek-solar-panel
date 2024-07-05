@@ -25,13 +25,13 @@ const DataRecording = () => {
   }, []);
 
   return (
-    <div className="h-[100vh] mx-[10%] flex flex-col justify-center items-center">
+    <div className="h-[150vh] md:h-[120vh] lg:h-[100vh] mx-[10%] flex flex-col justify-center items-center">
       <div className="text-center">
         <h1 className="text-4xl font-semibold">Data Recording</h1>
       </div>
 
       <div class="my-8">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center gap-x-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center gap-y-8 gap-x-8 flex-col md:flex-col lg:flex-row">
           <StatisticCard
             title="Average Data"
             dataAmpere={avgData ? avgData.average[0].ampere : "Fetching..."}
