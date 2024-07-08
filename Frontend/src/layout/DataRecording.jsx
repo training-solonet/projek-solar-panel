@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import StatisticCard from "../components/card/StatisticCard";
-import { getAvg, getMax, getMin } from "../data/api";
+import { getAvg, getMax, getMin } from "../services/api";
 
 const DataRecording = () => {
   const [maxData, setMaxData] = useState(null);
@@ -11,15 +11,15 @@ const DataRecording = () => {
     const fetchData = async () => {
       const max = await getMax();
       setMaxData(max);
-      console.log(max);
+      // console.log("Max Data : ", max);
 
       const min = await getMin();
       setMinData(min);
-      console.log(min);
+      // console.log("Min Data : ", min);
 
       const avg = await getAvg();
       setAvgData(avg);
-      console.log(avg);
+      // console.log("Average Data : ", avg);
     };
     fetchData();
   }, []);

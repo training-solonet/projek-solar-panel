@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react";
 import StatisticCard from "../components/card/StatisticCard";
+import { getData } from "../services/api";
 
 const DataRealtime = () => {
+  const [ data, setData ] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData();
+      setData(data);
+      setLastUpdate(new Date().toLocaleTimeString());
+      console.log("Data : ", data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="h-[100vh] mx-[10%] flex flex-col justify-center items-center">
       <div className="text-center">
@@ -14,9 +28,9 @@ const DataRealtime = () => {
           <StatisticCard
             customCard={"w-[850px] h-[280px]"}
             title="Current Data"
-            dataAmpere="0"
-            dataVolt="0"
-            lastUpdate="Last Update : 1 minutes ago"
+            dataAmpere={ data ? data.ampere : "Fetching..." }
+            dataVolt={ data ? data.volt : "Fetching..." }
+            lastUpdate={ `Last Update : ${lastUpdate}` }
           />
         </div>
       </div>

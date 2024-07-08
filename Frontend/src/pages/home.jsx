@@ -3,7 +3,6 @@ import BGSolarPanel from "../assets/img/solar-panel.jpg";
 import Button from "../components/button/Button";
 import DataRecording from "../layout/DataRecording";
 import DataRealtime from "../layout/DataRealtime";
-import { getMax } from "../data/api";
 
 const HomePage = () => {
   const contentRef = useRef(null);
