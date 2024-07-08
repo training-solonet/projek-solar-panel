@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StatisticCard from "../components/card/StatisticCard";
 import { getData } from "../services/api";
+import socket from '../services/websocket';
 
 const DataRealtime = () => {
   const [ data, setData ] = useState(null);
@@ -14,6 +15,12 @@ const DataRealtime = () => {
       console.log("Data : ", data);
     };
     fetchData();
+
+    // listen to new sensor data
+    socket.on('new-sensor-data', (newData) => {
+      console.log("New Sensor Data : ", newData);
+    });
+
   }, []);
 
   return (
@@ -23,8 +30,8 @@ const DataRealtime = () => {
         <p>Data that is updated every second</p>
       </div>
 
-      <div class="my-8">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center gap-x-8">
+      <div className="my-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center gap-x-8">
           <StatisticCard
             customCard={"w-[850px] h-[280px]"}
             title="Current Data"
